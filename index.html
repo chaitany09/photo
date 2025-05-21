@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload Multiple Images</title>
+    <title>Photo Sharing App</title>
 </head>
 <body>
     <h2>Upload High-Quality Images</h2>
-    <form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="photos" multiple>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="photos" multiple required>
         <input type="submit" value="Upload">
     </form>
+
+    {% if uploaded_urls %}
+        <h3>Uploaded Images:</h3>
+        <ul>
+        {% for url in uploaded_urls %}
+            <li>
+                <a href="{{ url }}" target="_blank">{{ url }}</a>
+                <br>
+                <img src="{{ url }}" alt="Uploaded Image" width="200">
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
